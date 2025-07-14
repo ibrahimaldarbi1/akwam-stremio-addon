@@ -1,8 +1,8 @@
-const { AddonBuilder } = require('stremio-addon-sdk');
+const addonBuilder = require('stremio-addon-sdk'); // ✅ FUNCTION, not class
 const manifest = require('./manifest.json');
 const { scrapeList, scrapeMetaDetails, searchAkwam, getStreams } = require('./akwam-scraper');
 
-const builder = new AddonBuilder(manifest); // ✅ FIXED
+const builder = addonBuilder(manifest); // ✅ FIXED
 
 builder.defineCatalogHandler(async ({ id, type, extra }) => {
   if (extra?.search) return { metas: await searchAkwam(extra.search, type) };
